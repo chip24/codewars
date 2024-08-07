@@ -1,5 +1,5 @@
 #my solution is very similar to the top solutions on Codewars although many of the top solutions used scan instead of gsub
-#also, I needed to add the underscore after \W becuase _ is considered alphanumeric
+#also, I needed to add the underscore after \W because _ is considered alphanumeric
 
 def alphabetized(s)
   s.gsub(/[\W_]/,'').chars.sort_by(&:downcase).join
