@@ -1,4 +1,4 @@
-#man of the CodeWars solution subtracted 96 from the sum like this:
+#many of the CodeWars solution subtracted 96 from the sum like this:
 #def high x
 #x.split.max_by{|word| word.chars.sum{|c| c.ord-96}}
 #end
