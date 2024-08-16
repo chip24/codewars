@@ -13,3 +13,11 @@ end
 p delete_nth([20,37,20,21], 1)
 p delete_nth([1,1,3,3,7,2,2,2,2], 3)
 p delete_nth([12,39,19,39,39,19,12], 1)
+
+def each_with_object_counter(arr)
+  arr.each_with_object(Hash.new(0)) do |item, counter|
+    counter[item] += 1
+  end
+end
+
+p each_with_object_counter([12,39,19,39,39,19,12])
