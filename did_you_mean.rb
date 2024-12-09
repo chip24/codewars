@@ -1,4 +1,4 @@
-# I got the levenshtein distance part from Stack Exchange.  One of the top CodeWars answers is very similiar ro mine but uses only one line.
+# I got the levenshtein distance part from Stack Exchange.  One of the top CodeWars answers is very similiar to mine but uses only one line.
 
 =begin
 require "rubygems/text"
@@ -32,7 +32,7 @@ class Dictionary
 end
 
 fruits = Dictionary.new(['cherry', 'pineapple', 'melon', 'strawberry', 'raspberry'])
-fruits.find_most_similar('strawbery')
+p fruits.find_most_similar('strawbery')
 
 
 
