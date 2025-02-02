@@ -1,0 +1,3 @@
+#I needed to look up how to solve this on Github.  Evidently, if you put Random.badge you can find all of the methods that the badge variable responds to, and a method :badge showed up in the list.  I'm not sure why just badge = Random.badge was enough to solve the problem though.  Also, some other solutions included Time like this badge = Time.now.to_i * 0.333.  Weird.  Anyway, my solution was 4th out of 44.
+
+badge = Random.badge

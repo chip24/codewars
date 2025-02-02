@@ -15,6 +15,7 @@ end
 #middle_permutation("abcd") # expected "bdca"
 #middle_permutation("abcdx") # expected "cbxda"
 #middle_permutation("abcdxg") # expected "cxgdba"
-middle_permutation("abcdxgz") # expected "dczxgba"
-middle_permutation("abcxgz")
-middle_permutation("abxgz")
+#middle_permutation("abcdxgz") # 
+expected "dczxgba"
+#middle_permutation("abcxgz")
+#middle_permutation("abxgz")

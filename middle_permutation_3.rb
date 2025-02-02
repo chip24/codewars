@@ -1,32 +1,58 @@
-def heap_permutation(arr, size)
-  if size == 1
-    puts arr.join
-  end
+#I submitted this code to CodeWars.  I wrote a brute force code in a few minutes that worked, but it took forever for strings longer than about 10 or 12 characters. I ended up finding some Python code and converting it to Ruby using Pilot. I've pasted the top answer below with its author's notes.
 
-  for i in 0...size
-    heap_permutation(arr, size - 1)
 
-    # if size is odd, swap 0th and size-1th 
-    # else Swap ith and (size-1)th 
-    if size.even?
-      arr[i], arr[size - 1] = arr[size - 1], arr[i]
-    else
-      arr[0], arr[size - 1] = arr[size - 1], arr[0]
-    end
-  end
-end
+
+=begin
+Turns out that for odd length strings, the answer is the reverse of the sorted string with the
+characters at indices length/2 and length/2+1 shifted to the front.  Same goes for even numbers,
+except even numbers it's only the character at length/2 that gets shifted to the front.
+
+The length/2 and length/2+1 are indices of the string that has already been sorted and reversed. #END OF AUTHOR'S NOTES
 
 def middle_permutation(string)
-  string_arr = string.chars
-  middle_index = string_arr.length.odd? ? string_arr.length / 2 : (string_arr.length / 2) - 1
 
-  permutations = []
-  heap_permutation(string_arr, string_arr.length) do |perm|
-    permutations << perm
-    break if permutations.length == middle_index + 1
-  end
+a = string.split("").sort.reverse
+l = a.length
+answer = []
 
-  permutations.last
+if a.length.odd?
+  2.times {answer << a.delete_at(l/2)}
+  answer << a
+  return answer.join
+else
+  answer << a.delete_at(l/2)
+  answer << a
+  return answer.join
 end
 
-p middle_permutation("abcde")
+end
+=end
+
+def middle_permutation(string)
+  ans = ""
+  tmp = string.chars.sort
+  dividend = (1..tmp.length).reduce(:*) / 2 - 1
+
+  tmp.length.times do
+    perms = (1..tmp.length).reduce(:*) / tmp.length
+    if tmp.length == 1
+      ans += tmp[0]
+      break
+    end
+    letter = tmp[dividend / perms]
+    ans += letter
+    tmp.delete_at(dividend / perms)
+    dividend -= perms * (dividend / perms)
+  end
+
+  ans
+end
+
+
+# Example usage
+puts middle_permutation("abc")    # Expected output: "cedba"
+puts middle_permutation("abcd")   # Expected output: "cfedba"
+puts middle_permutation("abcdx") # Should start with "e" and end with "a"
+puts middle_permutation("abcdxg")
+puts middle_permutation("abcdxgz")
+
