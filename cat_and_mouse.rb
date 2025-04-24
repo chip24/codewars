@@ -1,0 +1,2 @@
+def heggeleggleggo(word)
+end

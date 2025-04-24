@@ -1,3 +1,5 @@
+#require "rubocop"
+
 #I submitted the code below to CodeWars.  Many of the other submissions were a little shorter, but I didn't try to shorten my code since I was ready to submit it and not work on it anymore.
 
 def damaged_or_sunk (board, attacks)
