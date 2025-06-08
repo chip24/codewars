@@ -1,10 +1,15 @@
+# My code was ranked 12 out of 549.  I didn't need any help.
+
 def list_in_range(hash, range)
   arr = []
-  hash.each do |k,v| 
+  p sorted_hash = hash.sort_by {|k, v| v}
+
+  sorted_hash.each do |k,v| 
     if range.include?(v)
       arr << "#{k} (#{v})"
     end
   end
+  p arr
   arr.join(", ")
 end
 
