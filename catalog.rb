@@ -1,0 +1,55 @@
+# My code moved from rank 11 to rank 3 out of 101 after I upvoted it.  I needed help from Chat GPT to use Nokogiri to parse this file since I knew about Nokogiti but didn't know the syntax for it.
+
+require 'nokogiri'
+
+s = "<prod><name>drill</name><prx>99</prx><qty>5</qty></prod>
+<prod><name>hammer</name><prx>10</prx><qty>50</qty></prod>
+<prod><name>screwdriver</name><prx>5</prx><qty>51</qty></prod>
+<prod><name>table saw</name><prx>1099.99</prx><qty>5</qty></prod>
+<prod><name>saw</name><prx>9</prx><qty>10</qty></prod>
+<prod><name>chair</name><prx>100</prx><qty>20</qty></prod>
+<prod><name>fan</name><prx>50</prx><qty>8</qty></prod>
+<prod><name>wire</name><prx>10.8</prx><qty>15</qty></prod>
+<prod><name>battery</name><prx>150</prx><qty>12</qty></prod>
+<prod><name>pallet</name><prx>10</prx><qty>50</qty></prod>
+<prod><name>wheel</name><prx>8.80</prx><qty>32</qty></prod>
+<prod><name>extractor</name><prx>105</prx><qty>17</qty></prod>
+<prod><name>bumper</name><prx>150</prx><qty>3</qty></prod>
+<prod><name>ladder</name><prx>112</prx><qty>12</qty></prod>
+<prod><name>hoist</name><prx>13.80</prx><qty>32</qty></prod>
+<prod><name>platform</name><prx>65</prx><qty>21</qty></prod>
+<prod><name>car wheel</name><prx>505</prx><qty>7</qty></prod>
+<prod><name>bicycle wheel</name><prx>150</prx><qty>11</qty></prod>
+<prod><name>big hammer</name><prx>18</prx><qty>12</qty></prod>
+<prod><name>saw for metal</name><prx>13.80</prx><qty>32</qty></prod>
+<prod><name>wood pallet</name><prx>65</prx><qty>21</qty></prod>
+<prod><name>circular fan</name><prx>80</prx><qty>8</qty></prod>
+<prod><name>exhaust fan</name><prx>62</prx><qty>8</qty></prod>
+<prod><name>window fan</name><prx>62</prx><qty>8</qty></prod>"
+
+# Wrap in a root element (since XML requires one root)
+
+
+# Search function
+def catalog(s, f)
+  doc = Nokogiri::XML("<root>#{s}</root>")
+
+# Turn into array of hashes
+  products = doc.xpath("//prod").map do |prod|
+    {
+      name: prod.at("name").text,
+      prx:  prod.at("prx").text,
+      qty:  prod.at("qty").text.to_i
+    }
+  end
+  products
+
+  results = products.select { |p| p[:name].include?(f) }
+  return "Nothing" if results == []
+  results.map { |p| "#{p[:name]} > prx: $#{p[:prx]} qty: #{p[:qty]}" }.join("\n")
+end
+
+#puts catalog(s, "saw")
+puts catalog(s, "nails")
+
+
